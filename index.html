@@ -3,143 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مختبر الفيزياء الإماراتي</title>
+    <title>مسبار الفيزياء الإماراتي</title>
     <style>
         :root {
             --uae-red: #FF0000;
             --uae-green: #007A33;
-            --uae-black: #000000;
-            --gold-glow: #FFD700;
             --physics-blue: #00d4ff;
         }
 
-        body {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./gg.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+        body, html {
             margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
             overflow: hidden;
-            color: white;
+            background-color: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* خلفية فيزيائية خفيفة */
-        body::before {
-            content: "E=mc²   F=ma   λ=h/p";
-            position: absolute;
-            top: 10%;
-            left: 5%;
-            font-size: 5rem;
-            opacity: 0.03;
-            font-weight: bold;
-            pointer-events: none;
+        /* شاشة البداية (زر الدخول) */
+        #entry-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #1a1a1a, #000);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: 1s;
+        }
+
+        #start-btn {
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            background: none;
+            color: var(--uae-green);
+            border: 2px solid var(--uae-green);
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 122, 51, 0.4);
+            transition: 0.5s;
+        }
+
+        #start-btn:hover {
+            background: var(--uae-green);
+            color: white;
+            box-shadow: 0 0 40px var(--uae-green);
+        }
+
+        /* حاوية الفيديو */
+        #intro-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 9999;
+            display: none;
+            background: #000;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* المحتوى الرئيسي للموقع */
+        #main-site {
+            display: none;
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('gg.png');
+            background-size: cover;
+            background-position: center;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: 2s;
         }
 
         .card {
-            background: rgba(13, 17, 23, 0.95);
+            background: rgba(13, 17, 23, 0.85);
             padding: 40px;
             border-radius: 20px;
             border-top: 5px solid var(--uae-red);
-            border-right: 5px solid var(--uae-green);
             border-bottom: 5px solid white;
-            border-left: 5px solid var(--uae-black);
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
+            border-right: 5px solid var(--uae-green);
+            border-left: 5px solid #333;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
             width: 380px;
             text-align: center;
-            position: relative;
+            backdrop-filter: blur(10px);
         }
 
-        .card h1 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            background: linear-gradient(to bottom, #fff 50%, #ccc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .atom-icon { font-size: 3.5rem; animation: spin 4s linear infinite; margin-bottom: 10px; display: block; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        .atom-icon {
-            font-size: 3rem;
-            color: var(--physics-blue);
-            margin-bottom: 15px;
-            display: inline-block;
-            animation: spin 5s linear infinite;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+        h1 { color: white; margin: 10px 0; font-size: 1.8rem; }
+        .sub-text { color: var(--uae-green); font-weight: bold; margin-bottom: 20px; }
 
         input, textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            background: #1c2128;
-            border: 1px solid #444;
-            border-radius: 8px;
-            color: white;
-            box-sizing: border-box;
-            font-size: 1rem;
+            width: 100%; padding: 12px; margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.1); border: 1px solid #444;
+            border-radius: 8px; color: white; box-sizing: border-box;
         }
 
-        input:focus {
-            border-color: var(--uae-green);
-            outline: none;
-            box-shadow: 0 0 10px rgba(0, 122, 51, 0.3);
-        }
-
-        button {
-            width: 100%;
-            padding: 14px;
+        button.send-btn {
+            width: 100%; padding: 14px;
             background: linear-gradient(45deg, var(--uae-green), #00a344);
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            border: none; border-radius: 8px; color: white;
+            font-weight: bold; cursor: pointer; transition: 0.3s;
         }
 
-        button:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 20px rgba(0, 122, 51, 0.5);
-        }
-
-        .footer-text {
-            margin-top: 20px;
-            font-size: 0.8rem;
-            color: #888;
-        }
+        button.send-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--uae-green); }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="atom-icon">⚛️</div>
-        <h1>مسبار المعرفة الفيزيائية</h1>
-        <p style="color: var(--uae-green); font-weight: bold;">طموح زايد يعانق العلم</p>
-        
-        <!-- استبدل ID_YOUR_FORM بـ ID الخاص بك من Formspree -->
-        <form action="https://formspree.io/f/xzdogjor" method="POST">
-            <input type="email" name="email" placeholder="البريد الإلكتروني" required>
-            <textarea name="message" placeholder="اكتب رسالة لحماة الوطن البواسل" rows="4" required></textarea>
-            <button type="submit">
-                <span>إرسال البيانات</span>
-                <span>🚀</span>
-            </button>
-        </form>
+    <!-- 1. شاشة البداية لتفعيل الصوت -->
+    <div id="entry-screen">
+        <div style="color: white; margin-bottom: 20px; font-size: 1.2rem;">نظام مسبار المعرفة الفيزيائي</div>
+        <button id="start-btn" onclick="startExperience()">تشغيل الأنظمة 🚀</button>
     </div>
 
+    <!-- 2. فيديو المقدمة -->
+    <div id="intro-container">
+        <video id="myVideo">
+            <source src="intro.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- 3. الموقع الرئيسي -->
+    <div id="main-site">
+        <div class="card">
+            <span class="atom-icon">⚛️</span>
+            <h1>مسبار المعرفة</h1>
+            <p class="sub-text">طموح زايد يعانق العلم</p>
+            
+            <form action="https://formspree.io/f/ID_YOUR_FORM" method="POST">
+                <input type="email" name="email" placeholder="بريدك الإلكتروني" required>
+                <textarea name="message" placeholder="رسالتك لعلماء المستقبل..." rows="4" required></textarea>
+                <button type="submit" class="send-btn">إرسال البيانات</button>
+            </form>
+            <p style="font-size: 0.7rem; color: #888; margin-top: 15px;">صُنع بفخر في الإمارات العربية المتحدة 🇦🇪</p>
+        </div>
+    </div>
+
+    <script>
+        const entryScreen = document.getElementById('entry-screen');
+        const introContainer = document.getElementById('intro-container');
+        const video = document.getElementById('myVideo');
+        const mainSite = document.getElementById('main-site');
+
+        function startExperience() {
+            // إخفاء شاشة الدخول وإظهار الفيديو
+            entryScreen.style.opacity = '0';
+            setTimeout(() => {
+                entryScreen.style.display = 'none';
+                introContainer.style.display = 'flex';
+                video.play(); // سيعمل الصوت هنا لأن المستخدم ضغط على الزر
+            }, 1000);
+        }
+
+        // عند انتهاء الفيديو
+        video.onended = function() {
+            introContainer.style.opacity = '0';
+            setTimeout(() => {
+                introContainer.style.display = 'none';
+                mainSite.style.display = 'flex';
+                setTimeout(() => { mainSite.style.opacity = '1'; }, 100);
+            }, 1000);
+        };
+    </script>
 </body>
 </html>
