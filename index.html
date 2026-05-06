@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <form action="https://formspree.io/f/xzdogjor" method="POST">
   <label>بريدك الإلكتروني:</label>
   <input type="email" name="email" required>
@@ -7,3 +8,187 @@
 
   <button type="submit">إرسال</button>
 </form>
+=======
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Tajawal:wght@300;500&display=swap');
+
+  :root {
+    --core-color: #00ffcc; /* لون الطاقة النووية */
+    --void-bg: #02060a;
+    --panel-bg: rgba(0, 20, 30, 0.7);
+    --border-glow: rgba(0, 255, 204, 0.3);
+  }
+
+  body {
+    background: var(--void-bg);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Tajawal', sans-serif;
+    overflow: hidden;
+    /* خلفية مستوحاة من الشبكة الكونية */
+    background-image: 
+      linear-gradient(rgba(0, 255, 204, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 204, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  /* الحاوية الرئيسية بتصميم المختبر */
+  .lab-container {
+    position: relative;
+    width: 400px;
+    padding: 40px;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-glow);
+    border-radius: 5px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 255, 204, 0.05);
+    backdrop-filter: blur(10px);
+  }
+
+  /* زوايا الديكور التقني */
+  .lab-container::before, .lab-container::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--core-color);
+  }
+  .lab-container::before { top: -5px; left: -5px; border-right: 0; border-bottom: 0; }
+  .lab-container::after { bottom: -5px; right: -5px; border-left: 0; border-top: 0; }
+
+  h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--core-color);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    text-shadow: 0 0 15px var(--core-color);
+  }
+
+  .field-wrapper {
+    position: relative;
+    margin-bottom: 30px;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 12px 10px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 255, 204, 0.2);
+    color: #fff;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    transition: all 0.3s;
+  }
+
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--core-color);
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+    background: rgba(0, 40, 40, 0.4);
+  }
+
+  label {
+    display: block;
+    color: var(--core-color);
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  /* زر الإرسال بنظام الاندماج النووي */
+  button {
+    width: 100%;
+    padding: 15px;
+    background: transparent;
+    border: 1px solid var(--core-color);
+    color: var(--core-color);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    color: var(--void-bg);
+    box-shadow: 0 0 25px var(--core-color);
+  }
+
+  button::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--core-color);
+    transition: 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    z-index: -1;
+  }
+
+  button:hover::before {
+    left: 0;
+  }
+
+  /* إحداثيات وهمية للزينة */
+  .coordinates {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 10px;
+    color: rgba(0, 255, 204, 0.3);
+    font-family: monospace;
+  }
+
+  /* أيقونة الذرة المتحركة */
+  .atom-icon {
+    width: 40px;
+    margin: 0 auto 15px;
+    display: block;
+    filter: drop-shadow(0 0 5px var(--core-color));
+  }
+
+</style>
+</head>
+<body>
+
+<div class="lab-container">
+  <div class="coordinates">LAT: 45.32 | LONG: -12.43</div>
+  
+  <!-- أيقونة ذرة بصيغة SVG -->
+  <svg class="atom-icon" viewBox="0 0 24 24" fill="none" stroke="#00ffcc" stroke-width="1.5">
+    <circle cx="12" cy="12" r="3" fill="#00ffcc"/>
+    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(45 12 12)"/>
+    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-45 12 12)"/>
+  </svg>
+
+  <h2>Physics Terminal</h2>
+  
+  <form action="https://formspree.io/f/xzdogjor" method="POST">
+    <div class="field-wrapper">
+      <label>Identifier (E-mail)</label>
+      <input type="email" name="email" placeholder="entropy@physics.lab" required>
+    </div>
+    
+    <div class="field-wrapper">
+      <label>Signal Content (Message)</label>
+      <textarea name="message" rows="4" placeholder="Enter your data..." required></textarea>
+    </div>
+
+    <button type="submit">EXECUTE TRANSMISSION</button>
+  </form>
+</div>
+
+</body>
+</html>
+>>>>>>> c15526d (تحديث ملف index وتنسيق الواجهة)
