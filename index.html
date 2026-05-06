@@ -1,194 +1,145 @@
-<<<<<<< HEAD
-<form action="https://formspree.io/f/xzdogjor" method="POST">
-  <label>بريدك الإلكتروني:</label>
-  <input type="email" name="email" required>
-  
-  <label>رسالتك:</label>
-  <textarea name="message" required></textarea>
-
-  <button type="submit">إرسال</button>
-</form>
-=======
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Tajawal:wght@300;500&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مختبر الفيزياء الإماراتي</title>
+    <style>
+        :root {
+            --uae-red: #FF0000;
+            --uae-green: #007A33;
+            --uae-black: #000000;
+            --gold-glow: #FFD700;
+            --physics-blue: #00d4ff;
+        }
 
-  :root {
-    --core-color: #00ffcc; /* لون الطاقة النووية */
-    --void-bg: #02060a;
-    --panel-bg: rgba(0, 20, 30, 0.7);
-    --border-glow: rgba(0, 255, 204, 0.3);
-  }
+        body {
+            background: radial-gradient(circle at center, #0d1117 0%, #010409 100%);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
 
-  body {
-    background: var(--void-bg);
-    height: 100vh;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Tajawal', sans-serif;
-    overflow: hidden;
-    /* خلفية مستوحاة من الشبكة الكونية */
-    background-image: 
-      linear-gradient(rgba(0, 255, 204, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 255, 204, 0.03) 1px, transparent 1px);
-    background-size: 30px 30px;
-  }
+        /* خلفية فيزيائية خفيفة */
+        body::before {
+            content: "E=mc²   F=ma   λ=h/p";
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            font-size: 5rem;
+            opacity: 0.03;
+            font-weight: bold;
+            pointer-events: none;
+        }
 
-  /* الحاوية الرئيسية بتصميم المختبر */
-  .lab-container {
-    position: relative;
-    width: 400px;
-    padding: 40px;
-    background: var(--panel-bg);
-    border: 1px solid var(--border-glow);
-    border-radius: 5px;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 255, 204, 0.05);
-    backdrop-filter: blur(10px);
-  }
+        .card {
+            background: rgba(13, 17, 23, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            border-top: 5px solid var(--uae-red);
+            border-right: 5px solid var(--uae-green);
+            border-bottom: 5px solid white;
+            border-left: 5px solid var(--uae-black);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
+            width: 380px;
+            text-align: center;
+            position: relative;
+        }
 
-  /* زوايا الديكور التقني */
-  .lab-container::before, .lab-container::after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--core-color);
-  }
-  .lab-container::before { top: -5px; left: -5px; border-right: 0; border-bottom: 0; }
-  .lab-container::after { bottom: -5px; right: -5px; border-left: 0; border-top: 0; }
+        .card h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to bottom, #fff 50%, #ccc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-  h2 {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--core-color);
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    text-shadow: 0 0 15px var(--core-color);
-  }
+        .atom-icon {
+            font-size: 3rem;
+            color: var(--physics-blue);
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: spin 5s linear infinite;
+        }
 
-  .field-wrapper {
-    position: relative;
-    margin-bottom: 30px;
-  }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
 
-  input, textarea {
-    width: 100%;
-    padding: 12px 10px;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(0, 255, 204, 0.2);
-    color: #fff;
-    font-size: 0.9rem;
-    box-sizing: border-box;
-    transition: all 0.3s;
-  }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #1c2128;
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: white;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
 
-  input:focus, textarea:focus {
-    outline: none;
-    border-color: var(--core-color);
-    box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
-    background: rgba(0, 40, 40, 0.4);
-  }
+        input:focus {
+            border-color: var(--uae-green);
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 122, 51, 0.3);
+        }
 
-  label {
-    display: block;
-    color: var(--core-color);
-    font-size: 0.75rem;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    opacity: 0.8;
-  }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(45deg, var(--uae-green), #00a344);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
 
-  /* زر الإرسال بنظام الاندماج النووي */
-  button {
-    width: 100%;
-    padding: 15px;
-    background: transparent;
-    border: 1px solid var(--core-color);
-    color: var(--core-color);
-    font-family: 'Orbitron', sans-serif;
-    font-weight: bold;
-    cursor: pointer;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    transition: 0.3s;
-  }
+        button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(0, 122, 51, 0.5);
+        }
 
-  button:hover {
-    color: var(--void-bg);
-    box-shadow: 0 0 25px var(--core-color);
-  }
-
-  button::before {
-    content: "";
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: var(--core-color);
-    transition: 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    z-index: -1;
-  }
-
-  button:hover::before {
-    left: 0;
-  }
-
-  /* إحداثيات وهمية للزينة */
-  .coordinates {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    font-size: 10px;
-    color: rgba(0, 255, 204, 0.3);
-    font-family: monospace;
-  }
-
-  /* أيقونة الذرة المتحركة */
-  .atom-icon {
-    width: 40px;
-    margin: 0 auto 15px;
-    display: block;
-    filter: drop-shadow(0 0 5px var(--core-color));
-  }
-
-</style>
+        .footer-text {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+    </style>
 </head>
 <body>
 
-<div class="lab-container">
-  <div class="coordinates">LAT: 45.32 | LONG: -12.43</div>
-  
-  <!-- أيقونة ذرة بصيغة SVG -->
-  <svg class="atom-icon" viewBox="0 0 24 24" fill="none" stroke="#00ffcc" stroke-width="1.5">
-    <circle cx="12" cy="12" r="3" fill="#00ffcc"/>
-    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(45 12 12)"/>
-    <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-45 12 12)"/>
-  </svg>
+    <div class="card">
+        <div class="atom-icon">⚛️</div>
+        <h1>مسبار المعرفة الفيزيائية</h1>
+        <p style="color: var(--uae-green); font-weight: bold;">طموح زايد يعانق العلم</p>
+        
+        <!-- استبدل ID_YOUR_FORM بـ ID الخاص بك من Formspree -->
+        <form action="https://formspree.io/f/ID_YOUR_FORM" method="POST">
+            <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+            <textarea name="message" placeholder="اكتب سؤالك الفيزيائي هنا..." rows="4" required></textarea>
+            <button type="submit">
+                <span>إرسال البيانات</span>
+                <span>🚀</span>
+            </button>
+        </form>
 
-  <h2>Physics Terminal</h2>
-  
-  <form action="https://formspree.io/f/xzdogjor" method="POST">
-    <div class="field-wrapper">
-      <label>Identifier (E-mail)</label>
-      <input type="email" name="email" placeholder="entropy@physics.lab" required>
+        <div class="footer-text">
+            صُنع بفخر في الإمارات العربية المتحدة 🇦🇪
+        </div>
     </div>
-    
-    <div class="field-wrapper">
-      <label>Signal Content (Message)</label>
-      <textarea name="message" rows="4" placeholder="Enter your data..." required></textarea>
-    </div>
-
-    <button type="submit">EXECUTE TRANSMISSION</button>
-  </form>
-</div>
 
 </body>
 </html>
->>>>>>> c15526d (تحديث ملف index وتنسيق الواجهة)
