@@ -112,6 +112,25 @@
             border: none; border-radius: 8px; color: white;
             font-weight: bold; cursor: pointer; transition: 0.3s;
         }
+        #skip-btn {
+            position: absolute;
+            bottom: 40px; /* المسافة من الأسفل */
+            left: 40px;   /* المسافة من اليسار */
+            z-index: 10001; /* لضمان ظهوره فوق الفيديو */
+            padding: 12px 25px;
+            background: rgba(0, 0, 0, 0.6); /* خلفية سوداء شفافة */
+            color: white;
+            border: 1px solid var(--uae-green);
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
+        }
+        
+        #skip-btn:hover {
+            background: var(--uae-green);
+            box-shadow: 0 0 15px var(--uae-green);
+        }
 
         button.send-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--uae-green); }
     </style>
