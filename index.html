@@ -126,6 +126,8 @@
 
     <!-- 2. فيديو المقدمة -->
     <div id="intro-container">
+        <button id="skip-btn" onclick="goToMainSite()">تخطي (Skip) ➔</button>
+        
         <video id="myVideo">
             <source src="intro.mp4" type="video/mp4">
         </video>
@@ -154,24 +156,37 @@
         const mainSite = document.getElementById('main-site');
 
         function startExperience() {
-            // إخفاء شاشة الدخول وإظهار الفيديو
             entryScreen.style.opacity = '0';
             setTimeout(() => {
                 entryScreen.style.display = 'none';
                 introContainer.style.display = 'flex';
-                video.play(); // سيعمل الصوت هنا لأن المستخدم ضغط على الزر
+                video.play();
             }, 1000);
         }
 
-        // عند انتهاء الفيديو
-        video.onended = function() {
+        // الدالة المطورة لتدمير الفيديو وإيقاف الصوت
+        function goToMainSite() {
+            // 1. إيقاف الفيديو فوراً
+            video.pause();
+
+            // 2. تدمير المصدر لضمان توقف الصوت تماماً (حتى لو كان هناك تحميل خلفي)
+            video.src = ""; 
+            video.load(); // إعادة تحميل الفيديو وهو فارغ لإنهاء العمليات
+            video.remove(); // حذف عنصر الفيديو تماماً من الصفحة (Dom Removal)
+
+            // 3. انتقال ناعم للموقع الرئيسي
             introContainer.style.opacity = '0';
             setTimeout(() => {
                 introContainer.style.display = 'none';
                 mainSite.style.display = 'flex';
-                setTimeout(() => { mainSite.style.opacity = '1'; }, 100);
+                setTimeout(() => { 
+                    mainSite.style.opacity = '1'; 
+                }, 100);
             }, 1000);
-        };
+        }
+
+        // الانتقال التلقائي عند انتهاء الفيديو الطبيعي
+        video.onended = goToMainSite;
     </script>
 </body>
 </html>
